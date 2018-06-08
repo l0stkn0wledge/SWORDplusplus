@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 { airodump-ng mon0 2 >> output.txt; } &
 PID=$!

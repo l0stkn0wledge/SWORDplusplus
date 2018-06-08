@@ -1,17 +1,9 @@
-#!/bin/bash
+#!/bin/ash
 echo "Content-type: text/html"
 echo ""
 echo "<html><head><title>Zer0byte's S.W.O.R.D"
 echo "</title></head><body>"
-#echo "<h2>Welcome to :</h2>"
-#echo "<pre>"
-#echo  "╔═╗ ╦ ╦ ╔═╗ ╦═╗ ╔╦╗"
-#echo  "╚═╗ ║║║ ║ ║ ╠╦╝  ║║"
-#echo  "╚═╝o╚╩╝o╚═╝o╩╚═o═╩╝"
-#echo "<p >"
 echo "<img src=\"/SWORD/images/SWORD.PNG\">"
-#echo "</p>"
-#echo "</pre>"
 echo "<hr>"
 echo "<table border="1" cellpadding="0">
 <tr>

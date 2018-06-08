@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 echo ""
 echo "<html><head><title>Bash as CGI"
 echo "</title></head><body>"
