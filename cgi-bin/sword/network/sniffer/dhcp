@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>DHCP</title></head>"
+
+
+fcd=$(cat /www/cgi-bin/sword/network/sniffer/fc.txt)
+if [ $fcd -eq "0" ]; then 
+echo "Offline DHCP Captures"
+echo "<pre>$( cat /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep DHCP)</pre>"
+else
+echo "Real-time DHCP Captures"
+/www/cgi-bin/sword/network/sniffer/dhcprefresh
+fi
+
+echo "</body></html>"

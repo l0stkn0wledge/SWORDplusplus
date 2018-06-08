@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+if [ !  -f /www/cgi-bin/sword/wifi/mon.txt ]; then
+
+echo "<script>alert(\"Wi-Fi monitor mode is not enabled on Mon0\")</script>"
+exit
+fi
+
+
+echo "<html><head><title>WPS Survey </title></head>"
+echo "<body>"
+echo " " > /www/SWORD/logs/reaver/reaverattack.txt
+
+ifconfig wlan0 down
+
+macadd=`echo "$QUERY_STRING" | sed -n 's/^.*macaddr=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+
+#wash -i mon0 -s -C > /www/SWORD/logs/reaver/reaverattack.txt &
+
+/www/cgi-bin/sword/wifi/reaver/refresh
+
+echo "</body></html>"

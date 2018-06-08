@@ -1,0 +1,7 @@
+#!/bin/bash
+cat <<EOT
+<html>
+<body>
+<pre>
+EOT
+tail -f /www/cgi-bin/sword/wifi/mdk3/tmp.txt

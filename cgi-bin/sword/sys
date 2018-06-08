@@ -1,0 +1,47 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Zer0byte's S.W.O.R.D"
+echo "</title></head><body>"
+#echo "<h2>Welcome to :</h2>"
+#echo "<pre>"
+#echo  "╔═╗ ╦ ╦ ╔═╗ ╦═╗ ╔╦╗"
+#echo  "╚═╗ ║║║ ║ ║ ╠╦╝  ║║"
+#echo  "╚═╝o╚╩╝o╚═╝o╩╚═o═╩╝"
+#echo "<p >"
+echo "<img src=\"/SWORD/images/SWORD.PNG\">"
+#echo "</p>"
+#echo "</pre>"
+echo "<hr>"
+echo "<table border="1" cellpadding="0">
+<tr>
+
+</tr> <center><h2>System Information </h2></center>"
+echo "<hr>"
+echo "<h3>Memory Info: </h1>"
+echo "<hr>"
+echo "<pre> $(free -m) </pre>"
+echo "<hr>"
+echo "<h3>Disk Info:</h1>"
+echo "<hr>"
+echo "<pre> $(df -h) </pre>"
+echo "<hr>"
+#echo "<br>"
+
+mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+
+if [ $mon0check -eq 0 ]; then 
+echo "<B>Wi-Fi Monitor Mode is <font color="088A08">Enabled</font></B>"
+	
+	
+else
+rm /www/cgi-bin/sword/wifi/mon.txt
+echo "<B>Wi-Fi Monitor Mode is <font color="red">Disabled</font></B>"
+
+fi
+
+echo "<hr>"
+echo "<center>Information generated on $(date). Your IP Address = <b> $REMOTE_ADDR</b> </center>"
+echo "<hr>"
+echo "</body></html>"
+

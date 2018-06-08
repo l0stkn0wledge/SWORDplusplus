@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+echo "<h1>NetBios Host Discovery</h1>"
+a=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f1)
+b=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f2)
+c=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f3)
+
+
+
+date=$(date +"%d-%m-%y")
+date2=$(date +"%H-%M")
+
+nbtscan -h -v $a.$b.$c.0/24 > /www/cgi-bin/sword/network/nbtscan/logs/$date.txt
+
+nd=$(cat /www/cgi-bin/sword/network/nbtscan/logs/$date.txt)
+echo "<pre>$nd</pre>"
+
+
+#nf=$(cat nmap.txt | grep -v 'Nmap done' | grep -v 'Starting')
+#echo "<pre>$nf</pre>"
+echo "</body></html>"

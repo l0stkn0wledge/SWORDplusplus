@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+if [ !  -f /www/cgi-bin/sword/wifi/mon.txt ]; then
+
+echo "<script>alert(\"Wi-Fi monitor mode is not enabled on Mon0\")</script>"
+exit
+fi
+
+
+echo "<html><head><title>WPS Survey </title></head>"
+echo "<body>"
+echo " " > /www/SWORD/logs/reaver/reaver.txt
+
+ifconfig wlan0 down
+
+wash -i mon0 -s -C > /www/SWORD/logs/reaver/reaver.txt &
+
+/www/cgi-bin/sword/wifi/reaver/refresh
+
+echo "</body></html>"

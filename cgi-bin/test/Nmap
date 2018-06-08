@@ -1,0 +1,31 @@
+#!/bin/bash
+
+echo Content-type: text/html
+echo ""
+
+if [[ "$QUERY_STRING" =~ "nmap" ]]
+then
+if [[ "$QUERY_STRING" =~ "&nmap" ]]
+then
+echo "Sh1t detected. Quitting"
+exit 1
+fi
+
+ip=`echo "$QUERY_STRING"|cut -d "&" -f1|cut -d "=" -f2`
+
+cleanip=${ip//[^a-zA-Z0-9.]/}
+cleanip=`echo -n $cleanip | tr A-Z a-z`
+
+echo "<h3>Nmapping this poor Guy $cleanip...</h3>"
+printf "<pre>\n"
+nmap -F "$cleanip"
+printf "</pre>\n"
+#ping -c 4 "$cleanip" 2>&1|sed 's/$/<br>/g'
+echo "<hr>"
+echo "<p>"
+fi
+
+echo "<form method=get action=\"Nmap\">"
+echo "<input type=text name=nmap>"
+echo "<input type=submit value=\"Nmap\"><p>"
+echo "</form>"

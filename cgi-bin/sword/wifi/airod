@@ -1,0 +1,13 @@
+#!/bin/bash
+
+{ airodump-ng mon0 2 >> output.txt; } &
+PID=$!
+
+kill -TERM $PID
+
+cat <<EOT
+<html>
+<body>
+<pre>
+EOT
+tail -f output.txt

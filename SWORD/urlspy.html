@@ -1,0 +1,214 @@
+
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="css/ui-darkness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<script>
+	$(function() {
+		
+		$( "#accordion" ).accordion();
+		
+
+		
+		var availableTags = [
+			"ActionScript",
+			"AppleScript",
+			"Asp",
+			"BASIC",
+			"C",
+			"C++",
+			"Clojure",
+			"COBOL",
+			"ColdFusion",
+			"Erlang",
+			"Fortran",
+			"Groovy",
+			"Haskell",
+			"Java",
+			"JavaScript",
+			"Lisp",
+			"Perl",
+			"PHP",
+			"Python",
+			"Ruby",
+			"Scala",
+			"Scheme"
+		];
+		$( "#autocomplete" ).autocomplete({
+			source: availableTags
+		});
+		
+
+		
+		$( "#button" ).button();
+		$( "#radioset" ).buttonset();
+		
+
+		
+		$( "#tabs" ).tabs();
+		
+
+		
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			width: 400,
+			buttons: [
+				{
+					text: "Ok",
+					click: function() {
+						$( this ).dialog( "close" );
+					}
+				},
+				{
+					text: "Cancel",
+					click: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			]
+		});
+
+		// Link to open the dialog
+		$( "#dialog-link" ).click(function( event ) {
+			$( "#dialog" ).dialog( "open" );
+			event.preventDefault();
+		});
+		
+
+		
+		$( "#datepicker" ).datepicker({
+			inline: true
+		});
+		
+
+		
+		$( "#slider" ).slider({
+			range: true,
+			values: [ 17, 67 ]
+		});
+		
+
+		
+		$( "#progressbar" ).progressbar({
+			value: 20
+		});
+		
+
+		// Hover states on the static widgets
+		$( "#dialog-link, #icons li" ).hover(
+			function() {
+				$( this ).addClass( "ui-state-hover" );
+			},
+			function() {
+				$( this ).removeClass( "ui-state-hover" );
+			}
+		);
+	});
+	
+	</script>
+	<script language="javascript"> 
+function beacon_Change()
+{
+if (document.beacon.checkboxmain.checked == true) 
+  { 
+  document.beacon.start.disabled = false;
+  document.getElementById("1").disabled  = false;
+ 
+  document.beacon.essid.disabled = false;
+  document.beacon.adhoc.disabled = false;
+  document.beacon.wepb.disabled = false;
+  document.beacon.ss54.disabled = false;  
+  document.beacon.wpat.disabled = false; 
+  document.beacon.wpaa.disabled = false;
+  if (document.beacon.essid.checked == true) 
+  {
+  
+  document.beacon.etssid.disabled = false;
+  }
+  }
+else
+  { 
+  document.beacon.start.disabled = true;
+  document.getElementById("1").disabled = true;
+parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'
+
+
+   
+  }
+}
+
+</script>
+	<style>
+	body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin: 20px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	</style>
+</head>
+
+<body>
+<!--
+<a href="passwordsniffer.html" target="menu"><img border="0" src="icons/Password.png" alt="Settings" width="85" height="85"></a>
+//-->
+<a>
+<div id="accordion">
+
+	<h3>URL Spy</h3>
+
+	<div><p>
+	<!--
+	<form name="beacon" target="content" action="../cgi-bin/sword/network/sniffer/start" method="GET">
+	<input type="checkbox" name="checkboxmain" value="b" onclick="javascript:sniffer_Change()">Beacon Flood Mode                                                  
+    
+
+<input type="submit" name="start" disabled="disabled" value="Start Password Sniffer">
+</form>
+//-->
+<button id="1" onclick="parent.content.location='/cgi-bin/sword/network/sniffer/start'">Start URL Spy</button>&nbsp&nbsp&nbsp <button id="3" onclick="parent.content.location='/cgi-bin/sword/network/urlspy/fm'">View URL Spy Logs</button>
+<br><br>
+<button id="2"  onclick="parent.content.location='/cgi-bin/sword/network/sniffer/kill'">Stop URL Spy</button>
+
+
+</div>
+
+</div>
+
+</body>
+</html>

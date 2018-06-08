@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Kill WPS Survey</title></head>"
+echo "<body>"
+echo "<h2>WPS Survey Stopped</h2>"
+killall -9 wash
+killall -9 tail
+ifconfig wlan0 up
+echo "<pre>"
+echo "$(cat /www/SWORD/logs/reaver/reaver.txt)"
+echo "</pre>"
+#cat /www/SWORD/logs/reaver/reaver321.txt
+echo "</body>"
+echo "</html>"

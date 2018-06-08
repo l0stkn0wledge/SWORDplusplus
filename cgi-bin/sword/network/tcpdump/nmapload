@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+echo "<h1>Nmap Host Discovery</h1>"
+a=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f1)
+b=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f2)
+c=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f3)
+
+
+
+
+
+nmap $a.$b.$c.0/24 -sn > /www/cgi-bin/sword/network/nmap/nmap.txt
+
+nd=$(cat nmap.txt | grep 'Nmap done')
+echo "<b>$nd</b>"
+
+
+nf=$(cat nmap.txt | grep -v 'Nmap done' | grep -v 'Starting')
+echo "<pre>$nf</pre>"
+echo "</body></html>"

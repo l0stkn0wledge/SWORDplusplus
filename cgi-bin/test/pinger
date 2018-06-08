@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo Content-type: text/html
+echo ""
+
+if [[ "$QUERY_STRING" =~ "pingntrace" ]]
+then
+if [[ "$QUERY_STRING" =~ "&pingntrace" ]]
+then
+echo "Sh1t detected. Quitting"
+exit 1
+fi
+
+ip=`echo "$QUERY_STRING"|cut -d "&" -f1|cut -d "=" -f2`
+
+cleanip=${ip//[^a-zA-Z0-9.]/}
+cleanip=`echo -n $cleanip | tr A-Z a-z`
+
+echo "<h3>Pinging $cleanip...</h3>"
+printf "<pre>\n"
+ping -c 4 "$cleanip"
+printf "</pre>\n"
+#ping -c 4 "$cleanip" 2>&1|sed 's/$/<br>/g'
+echo "<hr>"
+echo "<p>"
+echo "<h3>Tracing route to $cleanip...</h3>"
+printf "<pre>\n"
+traceroute -n "$cleanip"
+printf "</pre>\n"
+#traceroute -n "$cleanip" 2>&1|sed 's/$/<br>/g'
+echo "<hr>"
+fi
+
+echo "<form method=get action=\"pinger\">"
+echo "<input type=text name=pingntrace>"
+echo "<input type=submit value=\"Ping & Trace\"><p>"
+echo "</form>"

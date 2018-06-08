@@ -1,0 +1,22 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+echo "<h1>NetBios Host Discovery</h1>"
+FILES=$(ls /www/SWORD/logs/nbtscan/)
+
+echo "<ol>"
+ echo "<table border='3' cellpadding='7'>"
+ 
+for f in $FILES
+do
+
+  echo "<tr><td><li></li><a href=/SWORD/logs/nbtscan/$f>$f</a></td></tr>"
+
+  # take action on each file. $f store current file name
+
+done
+ echo "</ol>"
+ 
+ echo "</table>"

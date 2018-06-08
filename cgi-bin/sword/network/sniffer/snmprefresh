@@ -1,0 +1,7 @@
+#!/bin/bash
+cat <<EOT
+<html>
+<body>
+<pre>
+EOT
+tail -f /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep SNMP

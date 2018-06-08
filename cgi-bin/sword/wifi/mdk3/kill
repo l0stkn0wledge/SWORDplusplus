@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>kill Mdk3</title></head>"
+echo "<body>"
+echo "<h2>MDK3 Stopped</h2>"
+echo "<pre>$(killall -9 mdk3)</pre>"
+echo "<pre>$(killall -9 tail)</pre>"
+echo "</body>"
+echo "</html>"

@@ -1,0 +1,39 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>File manager batch script"
+echo "</title></head><body>"
+
+cd /www/SWORD/logs/urlspy #change location
+
+FILES=$(ls *.tt) #change extension 
+liner=0
+ls -lh *.tt > array.txt #change extension 
+FILER=$(ls -lh *.tt) #change extension 
+IFS=$'\n' read -d '' -r -a liner < /www/SWORD/logs/urlspy/array.txt #change location
+i=0
+j=1
+
+ echo "<table border='3' cellpadding='1'><tr><th>No.</th><th>File name</th><th>Size</th></tr>"
+
+for fe in $FILES
+do
+ 
+echo "${liner[$i]}" | awk {'print $5 '} > filesize.txt
+
+fs=$(cat filesize.txt)
+
+#echo $fs
+
+echo "<p align=center>"
+
+  
+  echo "<tr><td><ol>&nbsp<li value="$j"></li></ol></td><td><a href=/SWORD/logs/urlspy/$fe>$fe</a></td><td>$fs</td></tr>"
+  
+  (( i++ ))
+  (( j++ ))
+
+  # take action on each file. $f store current file name
+done
+ echo "</table>"
+  <tr><td><li>

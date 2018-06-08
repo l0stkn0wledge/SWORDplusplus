@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>HTTP Captured Passwords</title></head>"
+
+
+fcd=$(cat /www/cgi-bin/sword/network/sniffer/fc.txt)
+
+if [ $fcd -eq "0" ]; then 
+echo "Offline HTTP Passwords"
+echo "<pre>$(cat /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep HTTP)</pre>"
+else
+echo "Real-time HTTP Passwords"
+/www/cgi-bin/sword/network/sniffer/httprefresh
+fi
+echo "</body></html>"

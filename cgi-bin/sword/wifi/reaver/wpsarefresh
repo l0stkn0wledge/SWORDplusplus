@@ -1,0 +1,6 @@
+#!/bin/bash
+cat <<EOT
+<h2>WPS Survey Started</h2>
+<pre>
+EOT
+tail -f /www/SWORD/logs/reaver/reaver.txt

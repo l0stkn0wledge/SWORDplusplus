@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+if [ !  -f /www/cgi-bin/sword/wifi/mon.txt ]; then
+
+echo "<script>alert(\"Wi-Fi monitor mode is not enabled on Mon0\")</script>"
+exit
+fi
+
+
+b=`echo "$QUERY_STRING" | sed -n 's/^.*checkboxmain=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+n=`echo "$QUERY_STRING" | sed -n 's/^.*essid=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+nssid=`echo "$QUERY_STRING" | sed -n 's/^.*etssid=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+adh=`echo "$QUERY_STRING" | sed -n 's/^.*adhoc=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+wep=`echo "$QUERY_STRING" | sed -n 's/^.*wepb=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+ssf=`echo "$QUERY_STRING" | sed -n 's/^.*ss54=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+wpatk=`echo "$QUERY_STRING" | sed -n 's/^.*wpat=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+wpaes=`echo "$QUERY_STRING" | sed -n 's/^.*wpaa=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+
+if [ $n = "b" ]; then 
+n=-n
+echo "<script>alert(\"n = $n\")</script>"
+echo "<script>alert(\"ssid sent = $nssid\")</script>"
+else 
+n=""
+nssid=""
+fi
+
+if [ $adh = "a" ]; then 
+adh=-d
+echo "<script>alert(\"adh = $adh\")</script>"
+else 
+adh=""
+fi
+
+if [ $wep = "a" ]; then 
+wep=-w
+echo "<script>alert(\"wep = $wep\")</script>"
+else 
+wep=""
+fi
+
+if [ $ssf = "a" ]; then 
+ssf=-g
+echo "<script>alert(\"ssf = $ssf\")</script>"
+else 
+ssf=""
+fi
+
+if [ $wpatk = "a" ]; then 
+wpatk=-t
+echo "<script>alert(\"wpatk = $wpatk\")</script>"
+else 
+wpatk=""
+fi
+
+if [ $wpaes = "a" ]; then 
+wpaes=-n
+echo "<script>alert(\"wpaes = $wpaes\")</script>"
+else 
+wpaes=""
+fi
+
+echo "<html><head><title>What You Said</title></head>"
+
+mdk3 mon0 $b $n $nssid $adh $wep $ssf $wpatk $wpaes > /www/cgi-bin/sword/wifi/mdk3/tmp.txt &
+
+#/www/cgi-bin/sword/wifi/mdk3/cat.sh
+/www/cgi-bin/sword/wifi/mdk3/refresh
+echo "</body></html>"

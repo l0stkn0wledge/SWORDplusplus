@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>SNMP Traps</title></head>"
+
+
+fcd=$(cat /www/cgi-bin/sword/network/sniffer/fc.txt)
+
+if [ $fcd -eq "0" ]; then 
+echo "Offline SNMP Traps"
+echo "<pre>$( cat /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep SNMP)</pre>"
+else
+echo "Real-time SNMP Traps"
+/www/cgi-bin/sword/network/sniffer/snmprefresh
+fi
+
+echo "</body></html>"

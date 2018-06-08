@@ -1,0 +1,309 @@
+
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="css/ui-darkness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<script>
+	$(function() {
+		
+		$( "#accordion" ).accordion();
+		
+
+		
+		var availableTags = [
+			"ActionScript",
+			"AppleScript",
+			"Asp",
+			"BASIC",
+			"C",
+			"C++",
+			"Clojure",
+			"COBOL",
+			"ColdFusion",
+			"Erlang",
+			"Fortran",
+			"Groovy",
+			"Haskell",
+			"Java",
+			"JavaScript",
+			"Lisp",
+			"Perl",
+			"PHP",
+			"Python",
+			"Ruby",
+			"Scala",
+			"Scheme"
+		];
+		$( "#autocomplete" ).autocomplete({
+			source: availableTags
+		});
+		
+
+		
+		$( "#button" ).button();
+		$( "#radioset" ).buttonset();
+		
+
+		
+		$( "#tabs" ).tabs();
+		
+
+		
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			width: 400,
+			buttons: [
+				{
+					text: "Ok",
+					click: function() {
+						$( this ).dialog( "close" );
+					}
+				},
+				{
+					text: "Cancel",
+					click: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			]
+		});
+
+		// Link to open the dialog
+		$( "#dialog-link" ).click(function( event ) {
+			$( "#dialog" ).dialog( "open" );
+			event.preventDefault();
+		});
+		
+
+		
+		$( "#datepicker" ).datepicker({
+			inline: true
+		});
+		
+
+		
+		$( "#slider" ).slider({
+			range: true,
+			values: [ 17, 67 ]
+		});
+		
+
+		
+		$( "#progressbar" ).progressbar({
+			value: 20
+		});
+		
+
+		// Hover states on the static widgets
+		$( "#dialog-link, #icons li" ).hover(
+			function() {
+				$( this ).addClass( "ui-state-hover" );
+			},
+			function() {
+				$( this ).removeClass( "ui-state-hover" );
+			}
+		);
+	});
+	
+	</script>
+	<script language="javascript"> 
+function beacon_Change()
+{
+if (document.beacon.checkboxmain.checked == true) 
+  { 
+  document.beacon.start.disabled = false;
+  document.getElementById("1").disabled  = false;
+ 
+  document.beacon.essid.disabled = false;
+  document.beacon.adhoc.disabled = false;
+  document.beacon.wepb.disabled = false;
+  document.beacon.ss54.disabled = false;  
+  document.beacon.wpat.disabled = false; 
+  document.beacon.wpaa.disabled = false;
+  if (document.beacon.essid.checked == true) 
+  {
+  
+  document.beacon.etssid.disabled = false;
+  }
+  }
+else
+  { 
+  document.beacon.start.disabled = true;
+  document.getElementById("1").disabled = true;
+   
+   document.beacon.essid.disabled = true;
+document.beacon.etssid.disabled = true;
+document.beacon.adhoc.disabled = true;
+ document.beacon.wepb.disabled = true;
+ document.beacon.ss54.disabled = true;  
+ document.beacon.wpat.disabled = true; 
+ document.beacon.wpaa.disabled = true;
+parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'
+
+
+   
+  }
+}
+function beacon_ssid_Change()
+{
+if (document.beacon.essid.checked == true) 
+  { 
+  document.beacon.etssid.disabled = false;
+  
+  }
+else
+  { 
+  document.beacon.etssid.disabled = true;
+  
+  }
+}
+
+function deauth_Change()
+{
+if (document.deauth.checkboxmain.checked == true) 
+  { 
+  document.deauth.start.disabled = false;
+   document.getElementById("3").disabled  = false;
+  }
+else
+  { 
+    document.deauth.start.disabled = true;
+	 document.getElementById("3").disabled  = true;
+parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'
+
+
+  }
+  }
+</script>
+	<style>
+	body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin: 20px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	</style>
+</head>
+
+<body>
+<a href="mdk3n.html" target="menu"><img border="0" src="icons/mdk3.png" alt="Settings" width="128" height="60"></a>
+
+<div id="accordion">
+
+	<h3>Beacon Flood / SSID Flood </h3>
+
+	<div><p>
+	<form name="beacon" target="content" action="../cgi-bin/sword/wifi/mdk3/beacon" method="GET">
+	<input type="checkbox" name="checkboxmain" value="b" onclick="javascript:beacon_Change()">Beacon Flood Mode                                                  
+      Sends beacon frames to show fake APs at clients.                   
+      This can sometimes crash network scanners and even drivers!. By defualt this option will generate random SSIDS</p>
+	  <input type="checkbox" name="essid" value="b" disabled="disabled" onclick="javascript:beacon_ssid_Change()">Enable SSID :  Use SSID <ssid> instead of randomly generated ones
+<br><br>
+<input type="textbox" name="etssid" disabled="disabled"> <br><br>
+
+<input type="checkbox" name="adhoc" value="a" disabled="disabled"> -d Show station as Ad-Hoc<br><br>
+<input type="checkbox" name="wepb" value="a" disabled="disabled"> -w Set WEP bit (Generates encrypted networks)<br><br>
+<input type="checkbox" name="ss54" value="a" disabled="disabled">-g Show station as 54 Mbit<br><br>
+<input type="checkbox" name="wpat" value="a" disabled="disabled">-t Show station using WPA TKIP encryption <br><br>
+<input type="checkbox" name="wpaa" value="a" disabled="disabled">-a Show station using WPA AES encryption<br><br>
+<!--
+<b>Options :-</b><br>
+
+#<input type="text" name="u"></input><br>
+
+#<input type="radio" name="beacon" value=""><br>
+//-->
+<input type="submit" name="start" disabled="disabled" value="Start Beacon Flood">
+</form>
+<br><br>
+<button id="1" disabled="disabled" onclick="parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'"> Stop Beacon Flood </button>
+
+
+</div>
+	<h3>Authentication DOS Mode</h3>
+	<div>Coming Soon <!-- <button id="2" disabled="disabled" onclick="parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'"> Stop Beacon Flood </button> //--> </div>
+	<h3>Basic probing and ESSID Bruteforce mode</h3>
+	<div>Coming Soon</div>
+	<h3>Deauthentication / Disassociation Amok Mode</h3>
+	<div><p>
+	
+	<form id="deauth" name="deauth" target="content" action="../cgi-bin/sword/wifi/mdk3/deauth" method="GET">
+	 <input type="checkbox" name="checkboxmain" value="jb" onclick="javascript:deauth_Change()"> Kick everybody found from AP</p>
+	<br>
+<!--	
+	<input type="checkbox" name="essid" value="b" disabled="disabled" onclick="javascript:deauth_ssid_Change()">Enable SSID :  Use SSID <ssid> instead of randomly generated ones
+<br><br>
+
+<input type="textbox" name="tmac" disabled="disabled"> <br><br>
+<select name="selectbox" id="selectbox" "data-placeholder="Select a country" form="deauth" multiple style="width:150px;height:165px" tabindex="11">
+            
+            <option value="1">Channel 1</option>
+            <option value="2">Channel 2</option>
+            <option value="3">Channel 3</option>
+            <option value="4">Channel 4</option>
+            <option value="5">Channel 5</option>
+            <option value="6">Channel 6</option>
+            <option value="7">Channel 7</option>
+            <option value="8">Channel 8</option>
+            <option value="9">Channel 9</option>
+            <option value="10">Channel 10</option>
+            <option value="11">Channel 11</option>
+          </select
+		  <br>
+		  //--> 
+		  <br>
+		  <input type="submit" name="start" disabled="disabled" value="Start Deauth Attack">
+		  </form>
+		  <br>
+		  <button id="3" disabled="disabled" onclick="parent.content.location='/cgi-bin/sword/wifi/mdk3/kill'"> Stop Deauth Attack </button></div>
+	<h3>Michael shutdown exploitation (TKIP)</h3>
+	<div>Nam dui erat, auctor a, dignissim quis.</div>
+	<h3>802.1X tests</h3>
+	<div>Nam dui erat, auctor a, dignissim quis.</div>
+	<h3>WIDS/WIPS Confusion</h3>
+	<div>Nam dui erat, auctor a, dignissim quis.</div>
+	<h3>MAC filter bruteforce mode</h3>
+	<div>Nam dui erat, auctor a, dignissim quis.</div>
+	<h3>WPA Downgrade test</h3>
+	<div>Nam dui erat, auctor a, dignissim quis.</div>
+</div>
+
+</div>
+
+</body>
+</html>

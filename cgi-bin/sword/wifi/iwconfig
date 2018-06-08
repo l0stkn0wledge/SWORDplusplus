@@ -1,0 +1,27 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Bash as CGI"
+echo "</title></head><body>"
+mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+
+if [ $mon0check -eq 0 ]; then 
+echo "<h2>Wi-Fi Monitor Mode is <font color="088A08">Enabled</font></h2>"
+echo 1 > /www/cgi-bin/sword/wifi/mon.txt
+else
+rm /www/cgi-bin/sword/wifi/mon.txt
+echo "<h2>Wi-Fi Monitor Mode is <font color="red">Disabled</font></h2>"
+
+fi
+
+
+#if [ -f /www/cgi-bin/sword/wifi/mon.txt ] 
+#then
+#echo "<h2>Wi-Fi Monitor Mode enabled on mon0</h2>"
+#else
+ # echo "<h2>Monitor Mode disabled</h2>"
+#fi
+echo "<h2>iwconfig</h2>"
+echo "<pre> $(iwconfig) </pre>"
+echo "</body></html>"
+

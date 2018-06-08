@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>LDAP Passwords</title></head>"
+
+
+
+fcd=$(cat /www/cgi-bin/sword/network/sniffer/fc.txt)
+
+if [ $fcd -eq "0" ]; then 
+echo "Offline LDAP Passwords"
+echo "<pre>$( cat /www/cgi-bin/sword/network/sniffer/passworddumps.txt | grep LDAP)</pre>"
+else
+echo "Real-time LDAP Passwords"
+/www/cgi-bin/sword/network/sniffer/ldaprefresh
+fi
+
+echo "</body></html>"

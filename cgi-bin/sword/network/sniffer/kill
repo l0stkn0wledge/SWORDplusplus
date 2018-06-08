@@ -1,0 +1,11 @@
+#!/bin/bash
+echo 0 > /www/cgi-bin/sword/network/sniffer/fc.txt
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Password Sniffer Stop</title></head>"
+echo "<body>"
+echo "<h2>Password Sniffer Stopped</h2>"
+echo "<pre>$(killall -9 ettercap)</pre>"
+echo "<pre>$(killall -9 tail)</pre>"
+echo "</body>"
+echo "</html>"

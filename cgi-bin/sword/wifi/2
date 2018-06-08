@@ -1,0 +1,25 @@
+#!/bin/bash
+
+{ airodump-ng mon0 2> /www/output.txt; } &
+PID=$!
+
+#kill -TERM $PID // if you remoce this line it will show output on browser 
+
+cat <<EOT
+<html>
+<body>
+<pre>
+<meta http-equiv="refresh" content=10>
+EOT
+#tail -f /www/output.txt
+
+while :
+
+do
+
+cat /www/output.txt
+sleep 3
+
+killall -9 airodump-ng
+#echo "<meta http-equiv="refresh" content=10>"
+done

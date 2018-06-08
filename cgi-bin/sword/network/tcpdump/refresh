@@ -1,0 +1,9 @@
+#!/bin/bash
+cat <<EOT
+<html>
+<body>
+<pre>
+EOT
+fname=$(cat /www/cgi-bin/sword/network/tcpdump/filename.txt)
+
+tail -f /www/SWORD/logs/tcpdump/$fname
