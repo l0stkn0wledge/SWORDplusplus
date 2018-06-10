@@ -1,5 +1,0 @@
-
-Starting Nmap 7.31 ( https://nmap.org ) at 2018-06-08 23:07 CDT
-Nmap scan report for 0.0 (0.0.0.0)
-Host is up.
-Nmap done: 3 IP addresses (1 host up) scanned in 3.36 seconds
