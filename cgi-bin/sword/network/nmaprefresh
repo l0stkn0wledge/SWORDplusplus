@@ -1,0 +1,7 @@
+#!/bin/ash
+cat <<EOT
+<body>
+<pre>
+EOT
+
+tail -f /www/cgi-bin/sword/network/nmap-scan.txt

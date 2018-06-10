@@ -13,7 +13,7 @@ c=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ pri
 date=$(date +"%d-%m-%y")
 date2=$(date +"%H-%M")
 
-echo $date2-$date.pcap > /www/cgi-bin/sword/network/tcpdump/filenaeme.txt
+echo $date2-$date.pcap > /www/cgi-bin/sword/network/tcpdump/filename.txt
 
 tcpdump -i br-lan -w /www/SWORD/logs/tcpdump/$date2-$date.pcap net $a.$b.$c.0/24 && #>> /www/cgi-bin/sword/network/tcpdump/tmp.txt
 

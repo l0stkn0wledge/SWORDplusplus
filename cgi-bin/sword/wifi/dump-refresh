@@ -1,0 +1,8 @@
+#!/bin/ash 
+
+cat <<EOT
+<h2> Surveying Available Wireless Networks </h2>
+<pre>
+EOT
+
+tail -f /www/SWORD/logs/airodump/airodump.txt

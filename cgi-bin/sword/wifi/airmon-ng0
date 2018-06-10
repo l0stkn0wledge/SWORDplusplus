@@ -4,20 +4,20 @@ echo ""
 echo "<html><head><title>Bash as CGI"
 echo "</title></head><body>"
 
-mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+mon0check=`ifconfig | grep wlan0mon | awk '{print $1}' | cut -b 5`
 
 if [ $mon0check -eq 0 ]; then 
 
-echo "<script>alert(\"Wi-Fi monitor mode already enabed on Mon0\")</script>"
+echo "<script>alert(\"Wi-Fi monitor mode already enabed on wlan0mon\")</script>"
 echo 1 > /www/cgi-bin/sword/wifi/mon.txt
 else
 echo "<h2>Starting Monitor Mode on Wlan0</h2>"
-echo "<pre> $(airmon-ng start wlan0) </pre>"
+echo "<pre> $(airmon-zc start wlan0) </pre>"
 echo "<br>"
 echo 1 > /www/cgi-bin/sword/wifi/mon.txt
 fi
-echo "<h2>iwconfig</h2>"
-echo "<pre> $(iwconfig) </pre>"
+echo "<h2>iwinfo</h2>"
+echo "<pre> $(iwinfo) </pre>"
 echo "</body></html>"
 
 

@@ -1,0 +1,12 @@
+#!/bin/ash -v
+
+echo "Content-type: text/html"
+echo ""
+
+echo "<html><head><title>nmap scan results</title></head>"
+
+NMAP_OPTIONS=$(echo $QUERY_STRING | cut -d\& -f1 | cut -d\= -f2 | sed 's/+/\ /g' | sed 's/\%2F/\//g')
+nmap $NMAP_OPTIONS > /www/cgi-bin/sword/network/nmap-scan.txt 2> /dev/null &
+
+/www/cgi-bin/sword/network/nmaprefresh
+echo "</body></html>"

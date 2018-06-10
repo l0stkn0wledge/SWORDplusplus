@@ -1,13 +1,19 @@
 #!/bin/ash
 
-{ airodump-ng mon0 2 >> output.txt; } &
-PID=$!
+echo "Content-type: text/html"
+echo ""
 
-kill -TERM $PID
+if [ ! -f /www/cgi-bin/sword/wifi/mon.txt]; then
 
-cat <<EOT
-<html>
-<body>
-<pre>
-EOT
-tail -f output.txt
+     echo "<script>alert(\"Wi-Fi- monitor mode not enabled on wlan0mon\")</script>
+     exit
+fi
+
+echo "<html><head><title>airodump wlan0mon</title></head>"
+echo "<body><h1>airodump</h1>"
+
+airodump-ng wlan0mon -w /www/SWORD/logs/airodump/airodump.txt &
+
+/www/cgi-bin/sword/wifi/dump-refresh
+
+echo "</body></html>"

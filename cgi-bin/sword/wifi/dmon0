@@ -4,21 +4,21 @@ echo ""
 echo "<html><head><title>Bash as CGI"
 echo "</title></head><body>"
 
-mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+mon0check=`ifconfig | grep wlan0mon | awk '{print $1}' | cut -b 5`
 
 if [ $mon0check -eq 0 ]; then 
-echo "<h2>Disabling Monitor Mode on mon0</h2>"
-echo "<pre> $(airmon-ng stop mon0) </pre>"
+echo "<h2>Disabling Monitor Mode on wlan0mon</h2>"
+echo "<pre> $(airmon-zc stop wlan0mon) </pre>"
 rm /www/cgi-bin/sword/wifi/mon.txt
 
 else
-echo "<script>alert(\"Wi-Fi monitor mode is not Enabled on Mon0\")</script>"
+echo "<script>alert(\"Wi-Fi monitor mode is not Enabled on wlan0mon\")</script>"
 echo "<br>"
 
 fi
 
 
-echo "<h2>iwconfig</h2>"
-echo "<pre> $(iwconfig) </pre>"
+echo "<h2>iwinfo</h2>"
+echo "<pre> $(iwinfo) </pre>"
 echo "</body></html>"
 

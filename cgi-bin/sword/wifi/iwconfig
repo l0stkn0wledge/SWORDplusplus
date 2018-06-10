@@ -3,7 +3,7 @@ echo "Content-type: text/html"
 echo ""
 echo "<html><head><title>Bash as CGI"
 echo "</title></head><body>"
-mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
+mon0check=`ifconfig | grep wlan0mon | awk '{print $1}' | cut -b 5`
 
 if [ $mon0check -eq 0 ]; then 
 echo "<h2>Wi-Fi Monitor Mode is <font color="088A08">Enabled</font></h2>"
