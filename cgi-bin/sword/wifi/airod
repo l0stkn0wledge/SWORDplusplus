@@ -3,17 +3,18 @@
 echo "Content-type: text/html"
 echo ""
 
-if [ ! -f /www/cgi-bin/sword/wifi/mon.txt]; then
-
-     echo "<script>alert(\"Wi-Fi- monitor mode not enabled on wlan0mon\")</script>
+if [ ! -f /www/cgi-bin/sword/wifi/mon.txt ]; then
+     echo "<script>alert(\"Wi-Fi- monitor mode not enabled on wlan0mon\")</script>"
      exit
 fi
 
-echo "<html><head><title>airodump wlan0mon</title></head>"
+echo "<html><head><title>airodump wlan0mon"
+echo "</title></head>"
 echo "<body><h1>airodump</h1>"
 
-airodump-ng wlan0mon -w /www/SWORD/logs/airodump/airodump.txt &
-
+tmux new -d -x 240
+tmux send -Rt 0 'airodump-ng wlan0mon 2> /www/SWORD/logs/airodump/airodump.txt' ENTER
+sleep 5 
 /www/cgi-bin/sword/wifi/dump-refresh
 
 echo "</body></html>"

